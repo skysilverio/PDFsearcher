@@ -84,23 +84,23 @@ def search_string_in_pdf(pdf_path, search_strings):
       <li>os.listdir(directory) returns a list of all files and directories within the given directory.</li>
       <li>The function loops through each filename in that list.</li>
     </ul>
-  <li>PDF Pages Loop:</li>
+  <li>Check for PDF Files:</li>
     <ul>
       <li>for page in pdf.pages: Loops through each page in the PDF.</li>
       <li>extract_text(): Extracts text from each page. If text is present, it converts the text to lowercase (text.lower()), which ensures case-insensitive searching.</li>
     </ul>
-  <li>String Matching:</li>
+  <li>Build the PDF File Path</li>
     <ul>
-      <li>For each string in search_strings, it checks if the lowercase version of the string is present in the lowercase text of the page.</li>
-      <li>If the string is found, the corresponding value in found_strings is updated to True.</li>
+      <li>os.path.join(directory, filename) combines the directory path and the filename to create the full path to the PDF file (pdf_path).</li>
     </ul>
-  <li>Error Handling (except):</li>
+  <li>Search for Strings in the PDF</li>
     <ul>
-      <li>If there is an error (e.g., file can't be opened), the function prints a message with the error details, including the pdf_path and the error message (e).</li>
+      <li>The function search_string_in_pdf (from the previous code you provided) is called to search for the search_strings in the PDF located at pdf_path.</li>
+      <li>The search results (a dictionary of found strings) are stored in the results dictionary with the filename as the key.</li>    
     </ul>
   <li>Return Value:</li>
     <ul>
-      <li>After processing all pages, the function returns the found_strings dictionary, indicating which strings were found (True) or not found (False).</li>
+      <li>After processing all PDF files in the directory, the function returns the results dictionary. The dictionary will contain the filenames of the PDFs as keys, and for each file, it will store the result of the search.</li>
     </ul>
 </ol>
 
@@ -115,6 +115,50 @@ def search_in_pdfs(directory, search_strings):
     return results
 
 </code></pre>
+
+<h2>Step 4: Execute function</h2>
+<body>This code defines a main() function that searches for specific strings in PDF files located in a specific directory. It uses the previously defined function search_in_pdfs to perform the search and then prints the results.</body>
+
+<ol>
+  <li>Function Definition:</li>
+    <ul>
+      <li>The main() function contains the core logic to execute the search and display the results. It will be the entry point when the script is run.</li>
+    </ul>
+  <li>Specify the Directory</li>
+    <ul>
+      <li>directory: This variable holds the path to the folder containing the PDF files. You would change this path to wherever your PDF files are located.</li>
+    </ul>
+  <li>Loop Through Files in the Directory</li>
+    <ul>
+      <li>os.listdir(directory) returns a list of all files and directories within the given directory.</li>
+      <li>The function loops through each filename in that list.</li>
+    </ul>
+  <li>Define Search Strings</li>
+    <ul>
+      <li>search_strings: A list of strings that you want to search for within the PDF files.</li>
+    </ul>
+  <li>Build the PDF File Path</li>
+    <ul>
+      <li>os.path.join(directory, filename) combines the directory path and the filename to create the full path to the PDF file (pdf_path).</li>
+    </ul>
+  <li>Call the Search Function</li>
+    <ul>
+      <li>The function search_in_pdfs(directory, search_strings) is called to search for the specified strings in all PDF files within the given directory</li>
+      <li>The results will be stored in the results dictionary, where the keys are the filenames of the PDFs and the values are the results of the string search (a dictionary showing whether each string was found or not).</li>    
+    </ul>
+  <li>Display the Results</li>
+    <ul>
+      <li>The code iterates over each filename and its associated found_strings in the results dictionary.</li>
+      <li>For each PDF file (filename), it prints a heading showing the name of the file: Results for {filename}:.</li>
+      <li>Then, it loops through the dictionary found_strings (the result of searching for each string in that file).</li>
+      <li>For each string, it prints whether the string was "Found" or "No" (not found) using a conditional statement ('Found' if found else 'No').</li>
+    </ul>
+  <li>Display the Results</li>
+    <ul>
+      <li>This checks if the script is being run directly (as opposed to being imported as a module). If so, it calls the main() function.</li>
+      <li>This is a common Python idiom to ensure that the code inside main() only runs when the script is executed, and not when it's imported elsewhere.</li>
+    </ul>
+</ol>
 
 <pre><code>
 def main():
